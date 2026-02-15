@@ -19,19 +19,25 @@ function loadAttendance() {
   const percentage = Math.round((count / maxCount) * 100);
   document.getElementById("progressBar").style.width = percentage + "%";
 
-  // Count teams
+  // Count teams and collect names
   let waterCount = 0;
   let zeroCount = 0;
   let powerCount = 0;
+  const waterNames = [];
+  const zeroNames = [];
+  const powerNames = [];
 
   for (let i = 0; i < attendance.length; i++) {
     const record = attendance[i];
     if (record.team === "water") {
       waterCount++;
+      waterNames.push(record.name);
     } else if (record.team === "zero") {
       zeroCount++;
+      zeroNames.push(record.name);
     } else if (record.team === "power") {
       powerCount++;
+      powerNames.push(record.name);
     }
   }
 
@@ -39,6 +45,24 @@ function loadAttendance() {
   document.getElementById("waterCount").textContent = waterCount;
   document.getElementById("zeroCount").textContent = zeroCount;
   document.getElementById("powerCount").textContent = powerCount;
+
+  // Update attendee lists
+  updateAttendeeList("waterList", waterNames);
+  updateAttendeeList("zeroList", zeroNames);
+  updateAttendeeList("powerList", powerNames);
+}
+
+// Function to update attendee list display
+function updateAttendeeList(listId, names) {
+  const listElement = document.getElementById(listId);
+  listElement.innerHTML = "";
+
+  for (let i = 0; i < names.length; i++) {
+    const nameDiv = document.createElement("div");
+    nameDiv.className = "attendee-name";
+    nameDiv.textContent = names[i];
+    listElement.appendChild(nameDiv);
+  }
 }
 
 // Load attendance when page loads
@@ -71,6 +95,13 @@ form.addEventListener("submit", function (event) {
   // Update team counter
   const teamCounter = document.getElementById(team + "Count");
   teamCounter.textContent = parseInt(teamCounter.textContent) + 1;
+
+  // Add name to the team list
+  const listElement = document.getElementById(team + "List");
+  const nameDiv = document.createElement("div");
+  nameDiv.className = "attendee-name";
+  nameDiv.textContent = name;
+  listElement.appendChild(nameDiv);
 
   // Show welcome message
   const feedback = document.getElementById("checkInFeedback");

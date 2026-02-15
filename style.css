@@ -369,6 +369,31 @@ select {
   color: #475569;
 }
 
+.team-count {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0071c5;
+}
+
+/* Attendee list styles */
+.attendee-list {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.attendee-name {
+  font-size: 13px;
+  padding: 6px 10px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 6px;
+  color: #475569;
+  text-align: left;
+}
+
 /* Mobile responsive */
 @media (max-width: 768px) {
   .hero {

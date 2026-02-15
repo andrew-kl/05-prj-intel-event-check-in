@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -34,7 +34,7 @@
         <div id="progressBar" class="progress-bar"></div>
       </div>
     </div>
-    <div class="winner-message" style="display: none;">
+    <div class="winner-message" style="display: none">
       🎉 The results are in! <span id="winningTeam"></span> win! 🎉
     </div>
     <div class="container">
@@ -66,7 +66,11 @@
         </div>
       </form>
 
-      <label class="check-in-msg" id="checkInFeedback" style="display: none;"></label>
+      <label
+        class="check-in-msg"
+        id="checkInFeedback"
+        style="display: none"
+      ></label>
 
       <!-- Team stats -->
       <div class="team-stats">
@@ -75,14 +79,17 @@
           <div class="team-card water">
             <span class="team-name">🌊 Team Water Wise</span>
             <span class="team-count" id="waterCount">0</span>
+            <div class="attendee-list" id="waterList"></div>
           </div>
           <div class="team-card zero">
             <span class="team-name">🌿 Team Net Zero</span>
             <span class="team-count" id="zeroCount">0</span>
+            <div class="attendee-list" id="zeroList"></div>
           </div>
           <div class="team-card power">
             <span class="team-name">⚡ Team Renewables</span>
             <span class="team-count" id="powerCount">0</span>
+            <div class="attendee-list" id="powerList"></div>
           </div>
         </div>
       </div>
