@@ -7,6 +7,43 @@ const teamSelect = document.getElementById("teamSelect");
 let count = 0;
 const maxCount = 50;
 
+// Load attendance from localStorage on page load
+function loadAttendance() {
+  const attendance = JSON.parse(localStorage.getItem("attendance")) || [];
+  count = attendance.length;
+
+  // Update total count
+  document.getElementById("attendeeCount").textContent = count;
+
+  // Update progress bar
+  const percentage = Math.round((count / maxCount) * 100);
+  document.getElementById("progressBar").style.width = percentage + "%";
+
+  // Count teams
+  let waterCount = 0;
+  let zeroCount = 0;
+  let powerCount = 0;
+
+  for (let i = 0; i < attendance.length; i++) {
+    const record = attendance[i];
+    if (record.team === "water") {
+      waterCount++;
+    } else if (record.team === "zero") {
+      zeroCount++;
+    } else if (record.team === "power") {
+      powerCount++;
+    }
+  }
+
+  // Update team counters
+  document.getElementById("waterCount").textContent = waterCount;
+  document.getElementById("zeroCount").textContent = zeroCount;
+  document.getElementById("powerCount").textContent = powerCount;
+}
+
+// Load attendance when page loads
+loadAttendance();
+
 // Handle form submission
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -21,6 +58,11 @@ form.addEventListener("submit", function (event) {
   // Increment count
   count++;
   document.getElementById("attendeeCount").textContent = count;
+
+  // Store attendance in localStorage
+  const attendance = JSON.parse(localStorage.getItem("attendance")) || [];
+  attendance.push({ name, team });
+  localStorage.setItem("attendance", JSON.stringify(attendance));
 
   // Update progress bar
   const percentage = Math.round((count / maxCount) * 100);
