@@ -31,8 +31,21 @@ form.addEventListener("submit", function (event) {
   teamCounter.textContent = parseInt(teamCounter.textContent) + 1;
 
   // Show welcome message
-  const message = `🎉 Welcome, ${name} from ${teamName}!`;
-  alert(message);
+  const feedback = document.getElementById("checkInFeedback");
+  switch (team) {
+    case "water":
+      feedback.textContent = `🌊`;
+      break;
+    case "zero":
+      feedback.textContent = `🌿`;
+      break;
+    case "power":
+      feedback.textContent = `⚡`;
+      break;
+  }
+  feedback.textContent += ` Welcome, ${name} from ${teamName}!`;
+  feedback.style.display = "block";
+  document.getElementsByClassName("team-stats")[0].style.marginTop = "8px";
 
   form.reset();
 
