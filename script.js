@@ -35,4 +35,40 @@ form.addEventListener("submit", function (event) {
   alert(message);
 
   form.reset();
+
+  if (count === maxCount) {
+    const waterCard = document.getElementsByClassName("team-card water")[0];
+    const zeroCard = document.getElementsByClassName("team-card zero")[0];
+    const powerCard = document.getElementsByClassName("team-card power")[0];
+
+    const waterCount = parseInt(
+      waterCard.querySelector(".team-count").textContent,
+    );
+    const zeroCount = parseInt(
+      zeroCard.querySelector(".team-count").textContent,
+    );
+    const powerCount = parseInt(
+      powerCard.querySelector(".team-count").textContent,
+    );
+
+    const winCount = Math.max(waterCount, zeroCount, powerCount);
+    let winningTeam = "";
+
+    if (winCount === waterCount) {
+      winningTeam += waterCard.querySelector(".team-name").textContent;
+    }
+    if (winCount === zeroCount) {
+      winningTeam +=
+        (winningTeam ? " & " : "") +
+        zeroCard.querySelector(".team-name").textContent;
+    }
+    if (winCount === powerCount) {
+      winningTeam +=
+        (winningTeam ? " & " : "") +
+        powerCard.querySelector(".team-name").textContent;
+    }
+
+    document.getElementById("winningTeam").textContent = winningTeam;
+    document.querySelector(".winner-message").style.display = "block";
+  }
 });
